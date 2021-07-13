@@ -1,18 +1,7 @@
-/*Image.asset(
-              'images/lake.jpg',
-              width: 600.0,
-              height: 240.0,
-              fit: BoxFit.cover,
-            ),
-            titleSection,
-            buttonSection,
-            textSection,
-
- */
-
 //https://github.com/Singh-Shivani/Food_Lab.git
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_recipe_app/views/widgets/textAreaAndButtons.dart';
 
 class SignUpPage extends StatefulWidget {
   //const HomePage({Key key}) : super(key: key);
@@ -43,15 +32,29 @@ class _SignUpPageState extends State<SignUpPage> {
             child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            TextInput(
-                icon: Icon(Icons.supervised_user_circle),
-                hint: 'Enter User Name'),
-            TextInput(icon: Icon(Icons.email), hint: 'Enter Email'),
-            TextInput(
-                icon: Icon(Icons.password_rounded), hint: 'Enter Password'),
-            TextInput(
-                icon: Icon(Icons.password_sharp), hint: 'Confirm Password'),
-            ElevatedButton(
+            TextInput(hint: 'Enter User Name'),
+            TextInput(hint: 'Enter Email'),
+            TextInput(hint: 'Enter Password'),
+            TextInput(hint: 'Confirm Password'),
+            GestureDetector(
+              onTap: () => Navigator.pushReplacementNamed(context, '/home'),
+              child: CustomRaisedButton(
+                buttonText: 'Sign Up',
+              ),
+            ),
+            Container(
+              margin: EdgeInsets.symmetric(vertical: 20),
+              child:
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                Text('Already registered?  '),
+                TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, '/SigninPage');
+                    },
+                    child: Text('Sign In Here')),
+              ]),
+            ),
+            /*ElevatedButton(
               onPressed: () {},
               child: Text('       Sign Up       '),
               style: ButtonStyle(
@@ -62,39 +65,8 @@ class _SignUpPageState extends State<SignUpPage> {
                       RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(18.0),
                           side: BorderSide(color: Colors.red)))),
-            ),
+            ),*/
           ],
         )));
-  }
-}
-
-class TextInput extends StatelessWidget {
-  String hint = '';
-  Icon icon;
-  /*const TextInput({
-    Key? key,
-  }) : super(key: key);
-*/
-  TextInput({required this.icon, required this.hint});
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.symmetric(horizontal: 0, vertical: 20),
-      alignment: Alignment.center,
-      child: Container(
-        width: 350,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(50),
-            border: Border.all(
-                width: 1, color: Colors.purple, style: BorderStyle.solid)),
-        child: TextFormField(
-          decoration: InputDecoration(
-              hintText: hint,
-              contentPadding: EdgeInsets.all(15),
-              border: InputBorder.none),
-          onChanged: (value) {},
-        ),
-      ),
-    );
   }
 }

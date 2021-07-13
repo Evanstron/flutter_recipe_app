@@ -1,11 +1,13 @@
+import 'package:flutter_recipe_app/models/recipe.api.dart';
+
 class Recipe {
-  final String name = '';
-  final double rating = 0;
-  final String images = '';
-  final String totalTime = '';
+  var name;
+  var rating;
+  var images;
+  var totalTime;
   Recipe({this.name, this.rating, this.images, this.totalTime});
 
-  factory Recipe.fromjson(dynamic json) {
+  factory Recipe.fromJson(dynamic json) {
     return Recipe(
       name: json['name'] as String,
       images: json['images'][0]['hostedLargeUrl'] as String,
@@ -13,7 +15,14 @@ class Recipe {
       totalTime: json['totalTime'] as String,
     );
   }
-
-
+  static List<Recipe> recipesFromSnapshot(List snapshot) {
+    return snapshot.map((data) {
+      return Recipe.fromJson(data);
+    }).toList();
   }
+
+  // @override
+  // String toString() {
+  //   return 'Recipe {name: $name, image: $images, rating: $rating, totalTime: $totalTime}';
+  // }
 }
